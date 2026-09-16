@@ -11,7 +11,7 @@
 
 <p align="center">
   <b>A Full-Stack Machine Learning Web Application Powered by FastAPI</b><br>
-  Automated credit underwriting, financial risk evaluation, and real-time loan approval decisioning for SecureTrust Bank.
+  Predicting loan eligibility decisioning, credit risk scores, and financial repayment schedules based on applicant income, credit score, DTI ratio, collateral coverage, and employment profile.
 </p>
 
 [Key Features](#key-features) •

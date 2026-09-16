@@ -48,7 +48,7 @@ async def lifespan(app: FastAPI):
 # Initialize FastAPI App
 app = FastAPI(
     title="CreditWise Loan System API",
-    description="Machine Learning Loan Approval & Risk Assessment Backend for SecureTrust Bank",
+    description="Full-stack ML web application & FastAPI service for automated credit risk evaluation, loan eligibility underwriting, and portfolio analytics for SecureTrust Bank.",
     version="1.0.0",
     lifespan=lifespan
 )
