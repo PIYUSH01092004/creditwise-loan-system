@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CreditWise Intelligence Platform | SecureTrust Bank</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="/static/css/styles.css?v=req_loan_2026">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- Top Navbar -->
+    <header class="navbar">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+        <div class="brand-text">
+          <h1>SecureTrust Bank</h1>
+          <p>CreditWise AI Automated Loan Decision System</p>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-tab="tab-evaluator">
+          <i class="fa-solid fa-sliders"></i> Loan Evaluator
+        </button>
+        <button class="nav-tab" data-tab="tab-dashboard">
+          <i class="fa-solid fa-chart-line"></i> Analytics Dashboard
+        </button>
+        <button class="nav-tab" data-tab="tab-applicants">
+          <i class="fa-solid fa-table-list"></i> Applicant Records
+        </button>
+        <button class="nav-tab" data-tab="tab-calculator">
+          <i class="fa-solid fa-calculator"></i> EMI Simulator
+        </button>
+      </nav>
+
+      <!-- Model Status Badge -->
+      <div class="model-badge">
+        <div class="status-dot"></div>
+        <span id="model-status-text">AI Credit Risk Engine (95.8% Model Accuracy)</span>
+      </div>
+    </header>
+
+    <!-- ==================== TAB 1: EVALUATOR ==================== -->
+    <main id="tab-evaluator" class="tab-content active">
+      <div class="grid-evaluator">
+        
+        <!-- Input Form Card -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">
+                <i class="fa-solid fa-file-invoice-dollar" style="color: var(--emerald-600);"></i> Applicant Information & Financial Profile
+              </h2>
+              <p class="card-subtitle">Input financial metrics to run real-time ML risk assessment.</p>
+            </div>
+            <button type="button" class="btn-page" id="btn-fill-sample">
+              <i class="fa-solid fa-bolt" style="color: var(--gold-600);"></i> Auto-Fill Sample Data
+            </button>
+          </div>
+
+          <form id="loan-form">
+            
+            <!-- Financial & Income -->
+            <div class="form-section">
+              <div class="form-section-title">
+                <i class="fa-solid fa-wallet"></i> Household Income & Credit Metrics
+              </div>
+              <div class="form-grid">
+                
+                <div class="form-group">
+                  <label for="Applicant_Income">
+                    Applicant Monthly Income (₹)
+                    <span class="val-badge" id="val-income">₹85,000</span>
+                  </label>
+                  <input type="range" id="Applicant_Income" min="1000" max="700000" step="5000" value="85000">
+                </div>
+
+                <div class="form-group">
+                  <label for="Coapplicant_Income">
+                    Co-applicant Monthly Income (₹)
+                    <span class="val-badge" id="val-coincome">₹25,000</span>
+                  </label>
+                  <input type="range" id="Coapplicant_Income" min="0" max="700000" step="5000" value="25000">
+                </div>
+
+                <div class="form-group">
+                  <label for="Credit_Score">
+                    Credit Score (300-850)
+                    <span class="val-badge" id="val-credit">720</span>
+                  </label>
+                  <input type="range" id="Credit_Score" min="300" max="850" step="5" value="720">
+                </div>
+
+                <div class="form-group">
+                  <label for="DTI_Ratio">
+                    Debt-to-Income (DTI) Ratio
+                    <span class="val-badge" id="val-dti">28.0%</span>
+                  </label>
+                  <input type="range" id="DTI_Ratio" min="0.05" max="0.80" step="0.01" value="0.28">
+                </div>
+
+                <div class="form-group">
+                  <label for="Savings">Savings Balance (₹)</label>
+                  <input type="number" id="Savings" class="input-field" value="150000" min="0">
+                </div>
+
+                <div class="form-group">
+                  <label for="Collateral_Value">Collateral Asset Value (₹)</label>
+                  <input type="number" id="Collateral_Value" class="input-field" value="750000" min="0">
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Loan Requested -->
+            <div class="form-section">
+              <div class="form-section-title">
+                <i class="fa-solid fa-landmark"></i> Loan Structure & Parameters
+              </div>
+              <div class="form-grid">
+                
+                <div class="form-group">
+                  <label for="Loan_Amount">
+                    Loan Amount Requested (₹)
+                    <span class="val-badge" id="val-loanamt">₹5,00,000</span>
+                  </label>
+                  <input type="range" id="Loan_Amount" min="10000" max="1500000" step="10000" value="500000">
+                </div>
+
+                <div class="form-group">
+                  <label for="Loan_Term">
+                    Loan Term (Months)
+                    <span class="val-badge" id="val-term">36 mos</span>
+                  </label>
+                  <input type="range" id="Loan_Term" min="12" max="120" step="12" value="36">
+                </div>
+
+                <div class="form-group">
+                  <label for="Loan_Purpose">Loan Purpose</label>
+                  <select id="Loan_Purpose" class="input-field">
+                    <option value="Home">Home Loan</option>
+                    <option value="Personal" selected>Personal Loan</option>
+                    <option value="Car">Car / Auto Loan</option>
+                    <option value="Business">Business Loan</option>
+                    <option value="Education">Education Loan</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Existing_Loans">Existing Active Loans</label>
+                  <select id="Existing_Loans" class="input-field">
+                    <option value="0">0 (None)</option>
+                    <option value="1" selected>1 Active Loan</option>
+                    <option value="2">2 Active Loans</option>
+                    <option value="3">3+ Active Loans</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Personal & Demographic -->
+            <div class="form-section">
+              <div class="form-section-title">
+                <i class="fa-solid fa-user-tie"></i> Employment & Applicant Profile
+              </div>
+              <div class="form-grid">
+
+                <div class="form-group">
+                  <label for="Employment_Status">Employment Status</label>
+                  <select id="Employment_Status" class="input-field">
+                    <option value="Salaried" selected>Salaried Employee</option>
+                    <option value="Self-employed">Self-Employed / Business</option>
+                    <option value="Contract">Contract Worker</option>
+                    <option value="Unemployed">Unemployed</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Employer_Category">Employer Category</label>
+                  <select id="Employer_Category" class="input-field">
+                    <option value="Private" selected>Private Corporate</option>
+                    <option value="Government">Government / Public Sector</option>
+                    <option value="MNC">Multinational (MNC)</option>
+                    <option value="Business">Business Owner</option>
+                    <option value="Unemployed">Unemployed</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Education_Level">Education Level</label>
+                  <select id="Education_Level" class="input-field">
+                    <option value="Graduate" selected>Graduate / Post-Graduate</option>
+                    <option value="Not Graduate">Undergraduate</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Property_Area">Property Area</label>
+                  <select id="Property_Area" class="input-field">
+                    <option value="Urban" selected>Urban</option>
+                    <option value="Semiurban">Semi-Urban</option>
+                    <option value="Rural">Rural</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Age">Age (Years)</label>
+                  <input type="number" id="Age" class="input-field" value="35" min="18" max="75">
+                </div>
+
+                <div class="form-group">
+                  <label for="Dependents">Dependents</label>
+                  <select id="Dependents" class="input-field">
+                    <option value="0">0 Dependents</option>
+                    <option value="1" selected>1 Dependent</option>
+                    <option value="2">2 Dependents</option>
+                    <option value="3">3+ Dependents</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Marital_Status">Marital Status</label>
+                  <select id="Marital_Status" class="input-field">
+                    <option value="Married" selected>Married</option>
+                    <option value="Single">Single</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="Gender">Gender</label>
+                  <select id="Gender" class="input-field">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+
+              </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btn-predict">
+              <i class="fa-solid fa-shield-halved"></i> Evaluate Credit Risk & Eligibility
+            </button>
+
+          </form>
+        </div>
+
+        <!-- Live Financial Summary Card -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">
+                <i class="fa-solid fa-chart-simple" style="color: var(--gold-600);"></i> Live Financial Summary
+              </h2>
+              <p class="card-subtitle">Real-time parameters before ML decision</p>
+            </div>
+          </div>
+
+          <div class="preview-kpi-grid">
+            <div class="kpi-box">
+              <div class="kpi-label">Total Household Income</div>
+              <div class="kpi-val green" id="prev-total-income">₹11,000 / mo</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Est. Monthly EMI (10.5%)</div>
+              <div class="kpi-val blue" id="prev-emi">₹650.00 / mo</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Collateral Coverage</div>
+              <div class="kpi-val green" id="prev-collateral-pct">175.0%</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Debt-to-Income Status</div>
+              <div class="kpi-val green" id="prev-dti-status">Healthy (28%)</div>
+            </div>
+          </div>
+
+          <!-- Feature Importance Gauge Box -->
+          <div style="background: var(--bg-surface-elevated); padding: 18px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); margin-top: 10px;">
+            <h3 style="font-size: 0.85rem; font-weight: 800; color: var(--text-main); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+              <i class="fa-solid fa-brain" style="color: var(--emerald-600);"></i> Top ML Feature Weights
+            </h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.82rem;">
+              <li style="display: flex; justify-content: space-between;">
+                <span>1. Credit Score & DTI Ratio</span>
+                <span style="color: var(--emerald-600); font-weight: 700;">High Impact</span>
+              </li>
+              <li style="display: flex; justify-content: space-between;">
+                <span>2. Household Income & Loan Amount</span>
+                <span style="color: var(--emerald-600); font-weight: 700;">Medium-High</span>
+              </li>
+              <li style="display: flex; justify-content: space-between;">
+                <span>3. Collateral Coverage Ratio</span>
+                <span style="color: var(--gold-600); font-weight: 700;">Moderate</span>
+              </li>
+              <li style="display: flex; justify-content: space-between;">
+                <span>4. Employment & Property Area</span>
+                <span style="color: var(--text-light); font-weight: 600;">Secondary</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Print / Action Note -->
+          <div style="margin-top: 24px; font-size: 0.8rem; color: var(--text-light); text-align: center;">
+            <i class="fa-solid fa-lock" style="color: var(--emerald-600);"></i> Encrypted SecureTrust ML Pipeline Verification
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= RESULTS DISPLAY CARD ================= -->
+      <div id="result-card" class="result-card">
+        
+        <!-- Decision Banner -->
+        <div id="decision-banner" class="decision-banner approved">
+          <div class="decision-title-group">
+            <div class="decision-icon" id="decision-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="decision-text">
+              <h2 id="decision-status">LOAN APPLICATION APPROVED</h2>
+              <p id="decision-subtext">The applicant meets SecureTrust Bank risk eligibility criteria.</p>
+            </div>
+          </div>
+          
+          <div class="prob-score-badge">
+            <div class="score-num" id="prob-score-num">92.4%</div>
+            <div class="score-lbl">Approval Confidence</div>
+          </div>
+        </div>
+
+        <!-- Detailed Result Grid -->
+        <div class="result-details-grid">
+          
+          <!-- Column 1: Financial & Risk Breakdown -->
+          <div class="card" style="background: var(--bg-surface-elevated);">
+            <h3 class="card-title" style="font-size: 0.98rem; margin-bottom: 14px;">
+              <i class="fa-solid fa-shield-halved" style="color: var(--emerald-600);"></i> Risk Assessment & Terms
+            </h3>
+            
+            <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+              <div style="flex: 1; background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                <div style="font-size: 0.72rem; color: var(--text-light); font-weight: 600;">Risk Level</div>
+                <div id="res-risk-level" style="font-size: 1.15rem; font-weight: 800; color: var(--emerald-600);">Low Risk</div>
+              </div>
+              <div style="flex: 1; background: var(--bg-surface); padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);">
+                <div style="font-size: 0.72rem; color: var(--text-light); font-weight: 600;">Max Recommended Loan</div>
+                <div id="res-max-loan" style="font-size: 1.15rem; font-weight: 800; color: var(--emerald-900);">₹34,500</div>
+              </div>
+            </div>
+
+            <table style="width: 100%; font-size: 0.88rem; border-collapse: collapse;">
+              <tr style="border-bottom: 1px solid var(--border-subtle); height: 38px;">
+                <td style="color: var(--text-muted);">Requested Loan Amount</td>
+                <td style="text-align: right; font-weight: 700; font-family: 'JetBrains Mono', monospace;" id="res-requested-loan">₹5,00,000</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle); height: 38px;">
+                <td style="color: var(--text-muted);">Loan Term (Months)</td>
+                <td style="text-align: right; font-weight: 700; font-family: 'JetBrains Mono', monospace;" id="res-loan-term">36 Months</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle); height: 38px;">
+                <td style="color: var(--text-muted);">Estimated Monthly EMI</td>
+                <td style="text-align: right; font-weight: 700; font-family: 'JetBrains Mono', monospace;" id="res-emi">₹650.00</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle); height: 38px;">
+                <td style="color: var(--text-muted);">Total Repayment Amount</td>
+                <td style="text-align: right; font-weight: 700; font-family: 'JetBrains Mono', monospace;" id="res-total-repay">₹23,400.00</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle); height: 38px;">
+                <td style="color: var(--text-muted);">Total Finance Interest</td>
+                <td style="text-align: right; font-weight: 700; font-family: 'JetBrains Mono', monospace;" id="res-interest">₹3,400.00</td>
+              </tr>
+              <tr style="height: 38px;">
+                <td style="color: var(--text-muted);">Collateral Coverage Ratio</td>
+                <td style="text-align: right; font-weight: 700; font-family: 'JetBrains Mono', monospace;" id="res-collateral-ratio">175%</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Column 2: Key AI Drivers & Insights -->
+          <div class="card" style="background: var(--bg-surface-elevated);">
+            <h3 class="card-title" style="font-size: 0.98rem; margin-bottom: 14px;">
+              <i class="fa-solid fa-lightbulb" style="color: var(--gold-600);"></i> Model Risk Insights
+            </h3>
+            
+            <div id="insight-list" class="insight-list">
+              <!-- Dynamically Populated Insights -->
+            </div>
+            
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+              <button type="button" class="btn-page" onclick="window.print();" style="flex: 1;">
+                <i class="fa-solid fa-print"></i> Print Decision Report
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- ==================== TAB 2: ANALYTICS DASHBOARD ==================== -->
+    <main id="tab-dashboard" class="tab-content">
+      
+      <!-- Executive Dashboard Header -->
+      <div class="dashboard-header">
+        <div>
+          <h2 class="dashboard-title">
+            <i class="fa-solid fa-chart-line" style="color: var(--emerald-600);"></i> Executive Portfolio & AI Diagnostics
+          </h2>
+          <p class="dashboard-subtitle">Real-time credit risk analytics, loan portfolio distributions, and ML model feature attributions.</p>
+        </div>
+        <div class="dashboard-actions">
+          <span class="badge-tag"><i class="fa-solid fa-arrows-rotate"></i> Real-Time Feed</span>
+          <button type="button" class="btn-page" onclick="window.print();"><i class="fa-solid fa-download"></i> Export Analytics</button>
+        </div>
+      </div>
+
+      <!-- KPI Stats Row -->
+      <div class="kpi-row">
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Total Applications</h3>
+            <p id="dash-total-apps">1,000</p>
+            <span class="trend-badge positive"><i class="fa-solid fa-arrow-trend-up"></i> +100% Verified</span>
+          </div>
+          <div class="stat-icon" style="background: var(--slate-100); color: var(--slate-800);">
+            <i class="fa-solid fa-users"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Approval Rate</h3>
+            <p id="dash-approval-rate" style="color: var(--emerald-600);">31.4%</p>
+            <span class="trend-badge positive"><i class="fa-solid fa-shield-check"></i> Standard Portfolio</span>
+          </div>
+          <div class="stat-icon" style="background: var(--emerald-100); color: var(--emerald-600);">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Model Accuracy</h3>
+            <p id="dash-model-acc" style="color: var(--indigo-600);">95.8%</p>
+            <span class="trend-badge indigo"><i class="fa-solid fa-brain"></i> Random Forest Classifier</span>
+          </div>
+          <div class="stat-icon" style="background: var(--indigo-50); color: var(--indigo-600);">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-info">
+            <h3>Avg Credit Score</h3>
+            <p id="dash-avg-credit" style="color: var(--gold-600);">675</p>
+            <span class="trend-badge amber"><i class="fa-solid fa-scale-balanced"></i> Fair-Good Tier</span>
+          </div>
+          <div class="stat-icon" style="background: var(--gold-100); color: var(--gold-600);">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        <div class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-pie" style="color: var(--emerald-600);"></i> Loan Purpose Allocation</h3>
+              <p class="card-subtitle">Distribution across active loan purpose categories</p>
+            </div>
+            <span class="chart-tag">Portfolio breakdown</span>
+          </div>
+          <div class="chart-body">
+            <canvas id="chart-purpose"></canvas>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-chart-column" style="color: var(--emerald-600);"></i> Credit Score Spectrum</h3>
+              <p class="card-subtitle">Applicant volume categorized by credit tier</p>
+            </div>
+            <span class="chart-tag">Risk Segments</span>
+          </div>
+          <div class="chart-body">
+            <canvas id="chart-credit"></canvas>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-sliders" style="color: var(--gold-600);"></i> AI Feature Attribution Weights</h3>
+              <p class="card-subtitle">Relative feature importance influencing approval decisioning</p>
+            </div>
+            <span class="chart-tag">Model Explainability</span>
+          </div>
+          <div class="chart-body">
+            <canvas id="chart-features"></canvas>
+          </div>
+        </div>
+
+        <div class="card chart-card">
+          <div class="chart-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-circle-half-stroke" style="color: var(--indigo-600);"></i> Debt-to-Income (DTI) Segments</h3>
+              <p class="card-subtitle">Applicant proportion by financial obligation ratio</p>
+            </div>
+            <span class="chart-tag">Leverage Analysis</span>
+          </div>
+          <div class="chart-body">
+            <canvas id="chart-dti"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ==================== TAB 3: APPLICANT RECORDS ==================== -->
+    <main id="tab-applicants" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title"><i class="fa-solid fa-folder-tree" style="color: var(--emerald-600);"></i> Applicant Database Records</h2>
+            <p class="card-subtitle">Search, filter, and inspect credit dataset entries</p>
+          </div>
+        </div>
+
+        <!-- Filters & Search Controls -->
+        <div class="table-controls">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="table-search" class="input-field" placeholder="Search by Applicant ID, Employment, Property...">
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <select id="filter-status" class="input-field" style="width: auto;">
+              <option value="all">All Statuses</option>
+              <option value="Yes">Approved</option>
+              <option value="No">Rejected</option>
+            </select>
+
+            <select id="filter-purpose" class="input-field" style="width: auto;">
+              <option value="all">All Purposes</option>
+              <option value="Home">Home</option>
+              <option value="Personal">Personal</option>
+              <option value="Car">Car</option>
+              <option value="Business">Business</option>
+              <option value="Education">Education</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Income (₹)</th>
+                <th>Credit Score</th>
+                <th>DTI Ratio</th>
+                <th>Loan Amount (₹)</th>
+                <th>Term</th>
+                <th>Purpose</th>
+                <th>Employment</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="applicant-table-body">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+          <div style="font-size: 0.84rem; color: var(--text-light);" id="page-info">
+            Showing Page 1 of 100 (1,000 Records)
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn-page" id="btn-prev-page"><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <button class="btn-page" id="btn-next-page">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- ==================== TAB 4: RISK & EMI CALCULATOR ==================== -->
+    <main id="tab-calculator" class="tab-content">
+      <div class="grid-evaluator">
+        
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title"><i class="fa-solid fa-calculator" style="color: var(--emerald-600);"></i> EMI & Loan Affordability Simulator</h2>
+              <p class="card-subtitle">Adjust loan variables to calculate monthly payment schedules</p>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="form-group">
+              <label for="sim-amount">Principal Loan Amount (₹) <span class="val-badge" id="sim-val-amount">₹5,00,000</span></label>
+              <input type="range" id="sim-amount" min="10000" max="1500000" step="10000" value="500000">
+            </div>
+
+            <div class="form-group">
+              <label for="sim-rate">Annual Interest Rate (%) <span class="val-badge" id="sim-val-rate">10.5%</span></label>
+              <input type="range" id="sim-rate" min="5.0" max="24.0" step="0.5" value="10.5">
+            </div>
+
+            <div class="form-group">
+              <label for="sim-tenure">Loan Tenure (Months) <span class="val-badge" id="sim-val-tenure">36 Months</span></label>
+              <input type="range" id="sim-tenure" min="6" max="120" step="6" value="36">
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="background: var(--bg-surface-elevated);">
+          <h3 class="card-title" style="margin-bottom: 20px;"><i class="fa-solid fa-receipt" style="color: var(--gold-600);"></i> Payment Schedule Breakdown</h3>
+          
+          <div style="text-align: center; padding: 22px; background: var(--bg-surface); border-radius: var(--radius-md); margin-bottom: 20px; border: 1px solid var(--border-subtle);">
+            <div style="font-size: 0.8rem; color: var(--text-light); font-weight: 600;">Estimated Monthly Payment (EMI)</div>
+            <div id="sim-res-emi" style="font-size: 2.5rem; font-weight: 800; color: var(--emerald-600); font-family: 'JetBrains Mono', monospace;">₹812.50</div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.9rem;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+              <span style="color: var(--text-muted);">Principal Amount</span>
+              <span style="font-weight: 700;" id="sim-res-principal">₹25,000</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px;">
+              <span style="color: var(--text-muted);">Total Finance Interest</span>
+              <span style="font-weight: 700; color: var(--gold-600);" id="sim-res-interest">₹4,250</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding-bottom: 10px;">
+              <span style="color: var(--text-muted);">Total Repayment</span>
+              <span style="font-weight: 700; color: var(--emerald-900);" id="sim-res-total">₹29,250</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Custom App Script -->
+  <script src="/static/js/app.js?v=req_loan_2026"></script>
+</body>
+</html>
