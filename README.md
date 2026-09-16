@@ -7,6 +7,8 @@
 ![Scikit-Learn](https://img.shields.io/badge/scikit_learn-1.2+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?style=for-the-badge&logo=pandas&logoColor=white)
 ![Chart.js](https://img.shields.io/badge/Chart.js-4.0+-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://creditwise-loan-system-k4pp.onrender.com/)
+[![API Docs](https://img.shields.io/badge/API_Docs-Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://creditwise-loan-system-k4pp.onrender.com/docs)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
 <p align="center">
@@ -14,6 +16,12 @@
   Predicting loan eligibility decisioning, credit risk scores, and financial repayment schedules based on applicant income, credit score, DTI ratio, collateral coverage, and employment profile.
 </p>
 
+<p align="center">
+  🌐 <b>Live Web Application:</b> <a href="https://creditwise-loan-system-k4pp.onrender.com/" target="_blank">creditwise-loan-system-k4pp.onrender.com</a><br>
+  📖 <b>Interactive API Docs:</b> <a href="https://creditwise-loan-system-k4pp.onrender.com/docs" target="_blank">creditwise-loan-system-k4pp.onrender.com/docs</a>
+</p>
+
+[Live Demo](https://creditwise-loan-system-k4pp.onrender.com/) •
 [Key Features](#key-features) •
 [Dataset Overview](#dataset-overview) •
 [Architecture](#architecture) •
