@@ -1,143 +1,153 @@
+# 🏦 CreditWise — Automated Loan Eligibility & Credit Risk Intelligence Platform
+
 <div align="center">
 
-# 🏦 CreditWise Intelligence Platform
-### *Enterprise AI-Powered Automated Credit Risk Assessment & Underwriting Platform for SecureTrust Bank*
+![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.95+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
+![Scikit-Learn](https://img.shields.io/badge/scikit_learn-1.2+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
+![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?style=for-the-badge&logo=pandas&logoColor=white)
+![Chart.js](https://img.shields.io/badge/Chart.js-4.0+-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.95+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-v1.2+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
-[![Chart.js](https://img.shields.io/badge/Chart.js-v4.0-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Model Accuracy](https://img.shields.io/badge/Model%20Accuracy-95.8%25-059669?style=for-the-badge)](#-machine-learning-performance--benchmarks)
+<p align="center">
+  <b>A Full-Stack Machine Learning Web Application Powered by FastAPI</b><br>
+  Automated credit underwriting, financial risk evaluation, and real-time loan approval decisioning for SecureTrust Bank.
+</p>
+
+[Key Features](#key-features) •
+[Dataset Overview](#dataset-overview) •
+[Architecture](#architecture) •
+[ML Benchmarks](#ml-benchmarks) •
+[API Specs](#api-specs) •
+[Quickstart](#quickstart)
 
 </div>
 
 ---
 
-## 📌 Executive Summary
+## 📖 Executive Summary
 
-**CreditWise Intelligence Platform** is a full-stack Machine Learning application developed for automated credit underwriting, financial risk evaluation, and loan eligibility scoring. 
+**CreditWise Loan System** is an end-to-end Machine Learning web application designed to evaluate applicant financial profiles and compute real-time loan approval eligibility (**Approved / Rejected**), risk ratings (**Low, Moderate, High Risk**), maximum affordable loan amounts, and complete EMI repayment schedules.
 
-The system leverages a trained **Random Forest Classification Engine** trained on applicant financial profiles to compute real-time credit decisioning (**Approved / Rejected**), risk classifications (**Low, Moderate, High Risk**), maximum recommended loan limits, and complete EMI repayment schedules.
+By combining exploratory data analysis, feature engineering, non-linear mathematical transformations, and an ensemble **Random Forest Classifier** with a modern **Luxury Emerald-Gold Banking Interface**, CreditWise delivers an enterprise-grade automated underwriting platform for financial institutions.
 
-Designed with a modern **Luxury Emerald & Gold Fintech UI System**, the platform delivers an intuitive single-page banking dashboard powered by **FastAPI** and **Chart.js**.
+The system is deployed as a high-performance **FastAPI** backend server with lazy model artifact loading, non-caching headers, and cross-version Pydantic compatibility, accompanied by an interactive single-page web dashboard powered by **Chart.js**.
 
 ---
 
-## 🌟 Key Features & Functional Modules
+<a name="key-features"></a>
+## ✨ Key Features
 
-### 🎛️ 1. Automated Credit Risk Evaluator
-- **Real-Time ML Underwriting**: Inputs monthly income, credit score, DTI ratio, collateral value, active loans, and employment details to compute instant approval probabilities.
-- **Dynamic Risk Categorization**: Classifies applications into **Low Risk** (Emerald), **Moderate Risk** (Amber), or **High Risk** (Crimson) based on probability confidence and credit thresholds.
-- **AI Model Risk Insights**: Generates automated positive and negative risk factors explaining the model's decisioning (e.g., *"Healthy Debt-to-Income Ratio (28.0%)"*, *"Excellent collateral coverage (175.0%)"*).
-- **Auto-Fill Demonstration**: Built-in sample data generator for instant interactive testing.
+### 🤖 **1. Production Machine Learning Underwriting Engine**
+- Trained on **1,000 credit applicant records** with 18 financial, demographic, and credit risk attributes.
+- Built on an ensemble **Random Forest Classifier** achieving **95.79% Accuracy** and an **F1 Score of 93.55%**.
+- Implements robust feature engineering including squared non-linear terms ($DTI^2$, $CreditScore^2$), total household income, loan-to-income ratio, and collateral coverage ratio.
 
-### 📊 2. Executive Analytics & Portfolio Diagnostics
-- **Interactive Chart.js Visuals**:
-  - 🍕 **Loan Purpose Allocation**: Custom doughnut chart visualizing portfolio distribution across Home, Personal, Car, Business, and Education loans.
+### ⚡ **2. High-Performance FastAPI Backend**
+- Asynchronous prediction endpoint (`POST /api/predict`) with strict validation via **Pydantic**.
+- **Lazy Artifact Safeguard (`ensure_artifacts_loaded`)**: Automatically loads serialized model pipelines (`model_pipeline.joblib`) and datasets on demand, preventing 500 server errors.
+- Built-in **NoCache HTTP Middleware** to ensure zero browser caching on dynamic API requests.
+- Automatic interactive API documentation via **Swagger UI** (`/docs`) and **ReDoc** (`/redoc`).
+
+### 🎨 **3. Luxury Emerald-Gold Banking UI System**
+- Executive fintech aesthetic built with CSS design tokens, smooth backdrop elevations, dark mode elements, and responsive CSS Grid layouts.
+- **Real-Time Financial Summary**: Live updates for estimated monthly EMI, total household income, debt-to-income status, and collateral coverage percentages as user adjusts range sliders.
+- Instant outcome banner displaying approval probability confidence, risk level color coding, maximum recommended loan limit, and total repayment interest breakdown.
+
+### 📊 **4. Executive Portfolio & AI Diagnostics Dashboard**
+- Interactive **Chart.js** graphics:
+  - 🍕 **Loan Purpose Allocation**: 68% cutout doughnut chart showing distribution across Home, Personal, Car, Business, and Education loans.
   - 📊 **Credit Score Spectrum**: Vertical gradient bar chart grouping applicants into credit risk bands.
-  - 🎚️ **AI Feature Attribution Weights**: Horizontal bar chart illustrating top feature importances impacting approval decisions.
-  - 🌓 **Debt-to-Income (DTI) Leverage Segments**: Risk distribution based on applicant debt obligations.
-- **Executive KPI Cards**: Real-time trackers for total applications, approval rates, baseline credit averages, and production model accuracy.
+  - 🎚️ **AI Feature Attribution Weights**: Horizontal bar chart illustrating top feature importances with human-readable financial labels.
+  - 🌓 **Debt-to-Income (DTI) Leverage Segments**: Color-coded risk distribution.
 
-### 📁 3. Applicant Records Database Browser
-- **Data Table Engine**: Paginated table rendering historical applicant records with column sorting and status badge indicators.
-- **Filtering & Multi-Field Search**: Real-time client-side search across Applicant ID, employment status, employer category, and property area, combined with loan purpose and approval status filters.
+### 📁 **5. Applicant Records Database Browser**
+- Paginated table rendering historical applicant dataset entries with clean integer formatting (`#101`).
+- Real-time client-side search across Applicant ID, employment status, employer category, and property area, combined with status and loan purpose filters.
 
-### 🧮 4. Interactive EMI & Financial Simulator
-- **Repayment Calculator**: Interactive slider controls for loan principal, annual interest rate (5.0% - 24.0%), and tenure (6 to 120 months).
-- **Payment Schedule Breakdown**: Real-time calculation of estimated monthly EMI, total finance interest, and cumulative repayment totals.
-
----
-
-## 🤖 Machine Learning Performance & Benchmarks
-
-During model development, multiple classification algorithms were evaluated on stratified train/test splits. The **Random Forest Classifier** achieved superior performance across all evaluation metrics and was selected as the production inference engine.
-
-| Model Algorithm | Accuracy | Precision | Recall | F1 Score | ROC-AUC | Status |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| 🌲 **Random Forest Classifier** | **95.79%** | **90.62%** | **96.67%** | **93.55%** | **0.9854** | **Production Champion** |
-| 📈 **Logistic Regression** | 89.47% | 84.48% | 81.67% | 83.05% | 0.9508 | Evaluated |
-| 🎲 **Gaussian Naive Bayes** | 90.53% | 82.81% | 88.33% | 85.48% | 0.9667 | Evaluated |
-
-### 🔍 Top Feature Importances
-The Random Forest model identifies the following top predictors for loan eligibility:
-1. **Debt-to-Income (DTI) Ratio** (~19.3% Weight)
-2. **Credit Score Scale** (~18.4% Weight)
-3. **DTI Non-Linear Risk Curve** (~16.4% Weight)
-4. **Credit Score Metric** (~15.7% Weight)
-5. **Applicant Monthly Income** (~4.9% Weight)
-6. **Loan-to-Income Ratio** (~4.8% Weight)
+### 🧮 **6. EMI & Financial Affordability Simulator**
+- Interactive calculator with range sliders for loan amount, annual interest rate ($5.0\% - 24.0\%$), and loan tenure ($6$ to $120$ months).
+- Real-time payment schedule breakdown for principal, total interest, and total repayment amount.
 
 ---
 
-## ⚙️ System Architecture & Data Flow
+<a name="dataset-overview"></a>
+## 📊 Dataset Overview & Exploratory Data Analysis
+
+The machine learning core is built upon **`loan_approval_data.csv`**, comprising **1,000 credit applicant observations** across 19 financial, demographic, employment, and risk dimensions.
+
+### **1. Target Variable: `Loan_Approved`**
+- **Classes**: `"Yes"` (Approved) / `"No"` (Rejected)
+- **Approval Rate**: $31.37\%$ Approved / $68.63\%$ Rejected
+- **Encoding**: Label Encoded ($0 = \text{No}$, $1 = \text{Yes}$) for binary classification training.
+
+### **2. Demographics & Portfolio Coverage**
+- **Sample Size**: 1,000 total records (950 complete observations).
+- **Average Applicant Income**: ₹10,847 / month
+- **Average Loan Requested**: ₹20,456
+- **Average Credit Score**: 675.1 (Fair - Good Tier)
+- **Average DTI Ratio**: 0.347 (34.7%)
+- **Loan Purpose Breakdown**:
+  - Car Loan: 192 (20.2%)
+  - Business Loan: 192 (20.2%)
+  - Home Loan: 180 (18.9%)
+  - Personal Loan: 169 (17.8%)
+  - Education Loan: 169 (17.8%)
+
+---
+
+<a name="architecture"></a>
+## ⚙️ Architecture & Data Flow
 
 ```mermaid
 flowchart TD
-    A[Client Browser UI] -->|Form Input JSON| B[FastAPI REST Backend]
-    B -->|Pre-imputation & Feature Engineering| C[Pipeline Preprocessor]
-    C -->|Scaled & Encoded Matrix| D[RandomForest Model Engine]
-    D -->|Prediction & Probabilities| E[Risk & Financial Evaluator]
-    E -->|EMI Calculations & Insights| B
+    A[Client Web UI / Sliders] -->|JSON Input Payload| B[FastAPI REST API /api/predict]
+    B -->|Check Artifact State| C[Lazy Model Artifact Loader]
+    C -->|Feature Engineering & Preprocessing| D[ColumnTransformer Pipeline]
+    D -->|Scaled & Encoded Matrix| E[RandomForest Classification Engine]
+    E -->|Predict Class & Probabilities| F[Financial Risk Evaluator]
+    F -->|Compute EMI & Key Insights| B
     B -->|Structured JSON Response| A
 ```
 
 ---
 
-## 🛠️ Technology Stack & Dependencies
+<a name="ml-benchmarks"></a>
+## 🤖 Machine Learning Model Benchmarks
 
-- **Backend**: Python 3.9+, FastAPI, Uvicorn, Pydantic v2, Starlette
-- **Machine Learning & Analytics**: Scikit-Learn, Pandas, NumPy, Joblib
-- **Frontend & Design System**: HTML5, Vanilla CSS3 (Custom Design System with Glassmorphism), ES6 JavaScript, Chart.js
-- **Typography & Assets**: Google Fonts (*Outfit*, *JetBrains Mono*), FontAwesome 6 Icons
+During model training, multiple algorithms were evaluated using stratified train/test splits. **Random Forest Classifier** achieved the highest accuracy and F1 score, demonstrating superior non-linear decision boundary modeling.
 
----
+| Model Algorithm | Accuracy | Precision | Recall | F1 Score | ROC-AUC | Status |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| 🌲 **Random Forest Classifier** | **95.79%** | **90.62%** | **96.67%** | **93.55%** | **0.9854** | **Production Champion** |
+| 📈 **Logistic Regression** | 91.05% | 87.72% | 83.33% | 85.47% | 0.9510 | Evaluated |
+| 🎲 **Gaussian Naive Bayes** | 91.05% | 85.25% | 86.67% | 85.95% | 0.9664 | Evaluated |
 
-## 🚀 Quickstart & Installation
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/PIYUSH01092004/creditwise-loan-system.git
-cd creditwise-loan-system
-```
-
-### 2. Create & Activate Virtual Environment (Optional but Recommended)
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Train the ML Pipeline (Optional)
-To retrain the ML models from `loan_approval_data.csv` and generate `model_pipeline.joblib`:
-```bash
-python train_model.py
-```
-
-### 5. Start the Application Server
-```bash
-python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
-```
-Open your browser and navigate to: **`http://127.0.0.1:8000`**
+### 🔍 Top Predictor Feature Importances
+1. **Debt-to-Income (DTI) Ratio** (~19.3% Weight)
+2. **Credit Score Scale** (~18.4% Weight)
+3. **DTI Non-Linear Risk Curve** (~16.4% Weight)
+4. **Credit Score Metric** (~15.7% Weight)
+5. **Applicant Income** (~4.9% Weight)
+6. **Loan-to-Income Ratio** (~4.8% Weight)
 
 ---
 
-## 📖 API Documentation & Schema
+<a name="api-specs"></a>
+## 📖 API Documentation & Specifications
 
-### `POST /api/predict`
-Calculates loan decisioning, risk rating, and financial summary.
+### Primary Endpoints Overview
 
-#### Request Body Example
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/` | Serves the single-page application UI (`static/index.html`) |
+| `POST` | `/api/predict` | Runs ML model evaluation, risk assessment, and EMI calculations |
+| `GET` | `/api/stats` | Fetches portfolio summary stats, model accuracy, and chart binning data |
+| `GET` | `/api/applicants` | Fetches paginated dataset records with filtering and search |
+
+### `POST /api/predict` Request & Response Specification
+
+#### Sample Request Payload
 ```json
 {
   "Applicant_Income": 85000.0,
@@ -161,7 +171,7 @@ Calculates loan decisioning, risk rating, and financial summary.
 }
 ```
 
-#### Response Example
+#### Sample JSON Response
 ```json
 {
   "decision": "Approved",
@@ -181,7 +191,8 @@ Calculates loan decisioning, risk rating, and financial summary.
   },
   "key_insights": [
     { "type": "positive", "text": "Strong Credit Score (720) significantly boosts eligibility." },
-    { "type": "positive", "text": "Healthy Debt-to-Income Ratio (28.0%)." }
+    { "type": "positive", "text": "Healthy Debt-to-Income Ratio (28.0%)." },
+    { "type": "positive", "text": "Excellent collateral coverage (150.0% of loan amount)." }
   ],
   "model_used": "RandomForest"
 }
@@ -189,24 +200,62 @@ Calculates loan decisioning, risk rating, and financial summary.
 
 ---
 
+<a name="quickstart"></a>
+## 🛠️ Quickstart & Local Setup Guide
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/PIYUSH01092004/creditwise-loan-system.git
+cd creditwise-loan-system
+```
+
+### 2. Set Up Virtual Environment
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# macOS / Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Train & Export Pipeline Artifacts (Optional)
+```bash
+python train_model.py
+```
+
+### 5. Launch FastAPI Application Server
+```bash
+python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
+```
+Open your web browser and visit: **`http://127.0.0.1:8000`**
+
+---
+
 ## 📂 Repository File Structure
 
 ```text
 Creditwise_Loan_System/
-├── main.py                  # FastAPI Application & REST API Endpoints
-├── train_model.py           # ML Model Training & Pipeline Serialization
+├── main.py                  # FastAPI Application Server & REST Routes
+├── train_model.py           # ML Model Training & Pipeline Export Script
 ├── model_pipeline.joblib    # Serialized Scikit-Learn Model Artifact
-├── loan_approval_data.csv   # Credit Applicant Dataset (1,000 records)
+├── loan_approval_data.csv   # Credit Applicant Dataset (1,000 rows)
 ├── Credit_wise.ipynb        # Jupyter Notebook with EDA & Model Development
-├── requirements.txt         # Dependencies manifest
-├── README.md                # Project documentation
-├── .gitignore               # Repository ignore rules
+├── requirements.txt         # Project Dependencies
+├── README.md                # Project Documentation
+├── .gitignore               # Git Ignore Rules
 └── static/
-    ├── index.html           # Dashboard UI Application Markup
+    ├── index.html           # Single Page Dashboard Markup
     ├── css/
-    │   └── styles.css       # Custom Design System Stylesheet
+    │   └── styles.css       # Luxury Emerald-Gold Design System Stylesheet
     └── js/
-        └── app.js           # Client UI Logic & Chart.js Integration
+        └── app.js           # Client-Side Application Logic & Chart.js Visuals
 ```
 
 ---
@@ -219,4 +268,4 @@ Developed by **[Piyush Gupta](https://github.com/PIYUSH01092004)**
 
 ## 📜 License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the **MIT License**. See `LICENSE` for details.
